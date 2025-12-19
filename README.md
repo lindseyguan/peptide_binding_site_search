@@ -1,4 +1,5 @@
 
+
 # peptide_binding_site_search
 
 This repo contains code for running a peptide binding site search, as described in Figure 2 of:
@@ -16,6 +17,7 @@ Software:
  - pandas
  - tqdm
  - [pymol](https://pymol.org/conda/) python API
+ - [TMalign](https://aideepmed.com/TM-score/)
 
 Databases:
 
@@ -28,6 +30,12 @@ Databases:
 
 
 ## Running the script
+
+**Overview**: The `run.sh` script will run mmseqs and foldseek to search for sequence- and structure-based matches for the target chains. It then runs the script to count binding site overlap and calculate peptide RMSD, outputting the results to `DIR/binding_sites` .
+
+**Setup**: Please inspect the top of `run.sh` and see that the paths are consistent with your machine. Also, make sure `TMscore` is in the PATH environment variable (or change the TMscore path in `src/utils.py`). 
+
+
 The script will expect the input directory to look like this:
 
 ```
@@ -43,7 +51,6 @@ The script will expect the input directory to look like this:
 ```
 `queries.fa` should have headers that match the format used for foldseek inputs, i.e.,`{PDB_ID}_{RECEPTOR_CHAIN}{PEPTIDE_CHAIN}`.
 
-
-The `run.sh` script will run mmseqs and foldseek to search for sequence- and structure-based matches for the target chains. It then runs the script to count binding site overlap and calculate peptide RMSD, outputting the results to `DIR/binding_sites` .
+**Run**: `bash ./run.sh`
 
 
